@@ -1,0 +1,903 @@
+<apex:page renderAs="pdf">
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style type="text/css">
+      /* CLIENT-SPECIFIC STYLES */
+      html,
+      body {
+        margin: 0 auto !important;
+        padding: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+      }
+      /* What it does: Stops email clients resizing small text. */
+      * {
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+      /* What it does: Centers email on Android 4.4 */
+      div[style*="margin: 16px 0"] {
+        margin: 0 !important;
+      }
+      /* What it does: Stops Outlook from adding extra spacing to tables. */
+      table,
+      td {
+        mso-table-lspace: 0pt !important;
+        mso-table-rspace: 0pt !important;
+      }
+      /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+      table {
+        border-spacing: 0 !important;
+        border-collapse: collapse !important;
+        table-layout: fixed !important;
+        margin: 0 auto !important;
+      }
+      table table table {
+        table-layout: auto;
+      }
+      /* What it does: Uses a better rendering method when resizing images in IE. */
+      img {
+        -ms-interpolation-mode: bicubic;
+      }
+      /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+      a {
+        text-decoration: none;
+      }
+      /* What it does: A work-around for email clients meddling in triggered links. */
+      *[x-apple-data-detectors],
+         /* iOS */
+         .unstyle-auto-detected-links *,
+         .aBn {
+        border-bottom: 0 !important;
+        cursor: default !important;
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
+      .sign a {
+        color: #272525;
+      }
+      .sign a *[class="sign-padd"] {
+        color: #272525;
+      }
+      /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+      .a6S {
+        display: none !important;
+        opacity: 0.01 !important;
+      }
+      /* If the above doesn't work, add a .g-img class to any image in question. */
+      img.g-img + div {
+        display: none !important;
+      }
+      /* MOBILE STYLES */
+      @media screen and (max-width: 525px) {
+        .mobile-font,
+        *[class="mobile-font"] {
+          font-size: 16px !important;
+          line-height: 26px !important;
+        }
+        .mob-font,
+        *[class="mob-font"] {
+          font-size: 18px !important;
+          line-height: 28px !important;
+        }
+        .mobile-font-subfont,
+        *[class="mobile-font-subfont"] {
+          font-size: 16px !important;
+          line-height: 26px !important;
+          text-align: center !important;
+        }
+        .mobile-font-subtitle-font {
+          font-size: 17px !important;
+          line-height: 27px !important;
+        }
+        .spacing {
+          padding: 5px 0 8px 0 !important;
+        }
+        .border {
+          border-left: 0px solid #ffffff;
+          border-right: 0px solid #ffffff;
+        }
+        .program-padd {
+          padding: 10px 2px 10px 2px !important;
+        }
+        .text-center {
+          text-align: center;
+        }
+        .mobile_width,
+        *[class="mobile_width"] {
+          font-size: 20px !important;
+          line-height: 30px !important;
+        }
+        .mobile-font-subhead {
+          font-size: 21px !important;
+          line-height: 31px !important;
+        }
+        td.vedio-padd {
+          padding-top: 20px !important;
+        }
+        .mpt2,
+        [owa] .mpt2,
+        *[class="mpt2"] {
+          line-height: 0px !important;
+          font-size: 2px !important;
+          padding-top: 8px !important;
+        }
+        .testing-padding,
+        *[class="testing-padding"] {
+          padding: 0px 30px 0px 15px !important;
+        }
+        .mobile_alignment {
+          text-align: left !important;
+        }
+        .padding-top {
+          padding-top: 20px !important;
+        }
+        .mobile_width {
+          text-align: center !important;
+        }
+        .text-left {
+          text-align: left !important;
+        }
+        .mobile-font-subhead {
+          font-size: 21px !important;
+          line-height: 31px !important;
+        }
+        .no-padd {
+          padding: 0 !important;
+        }
+        .msonopad {
+          padding: 0 4px !important;
+        }
+        .flex,
+        *[class="flex"] {
+          width: 100% !important;
+          display: block !important;
+          text-align: center !important;
+          margin-bottom: 20px !important;
+        }
+        .flex4,
+        *[class="flex4"] {
+          width: 100% !important;
+          display: block !important;
+          text-align: center !important;
+          margin-bottom: 0px !important;
+        }
+        .flex1,
+        *[class="flex1"] {
+          width: 100% !important;
+          display: block !important;
+          margin-bottom: 10px !important;
+        }
+        .flex2,
+        *[class="flex2"] {
+          width: 100% !important;
+          display: block !important;
+          text-align: center !important;
+          margin-bottom: 2px !important;
+          padding-left: 0px !important;
+        }
+        .pd_bottom {
+          padding-bottom: 20px !important;
+        }
+        .flex3,
+        *[class="flex3"] {
+          width: 100% !important;
+          display: block !important;
+          text-align: center !important;
+        }
+        .program-padd {
+          padding: 10px 2px 10px 2px !important;
+        }
+        .padding-bottom_0 {
+          padding-bottom: 0 !important;
+          padding-top: 10px !important;
+        }
+        table.center_mob {
+          width: 100%;
+        }
+        td#logo_shift {
+          text-align: center !important;
+        }
+        .icon-width,
+        *[class="icon-width"] {
+          width: 20% !important;
+        }
+        .bottom-border {
+          border-bottom: 0px solid !important;
+        }
+        .btn-padd-bottm {
+          padding-top: 0px !important;
+        }
+        td.flex4.border-top {
+          border-top: 1px solid #d2d2d2;
+          padding-top: 30px !important;
+        }
+        .padd-bottom {
+          padding: 30px 0px 20px 0px !important;
+          text-align: center;
+        }
+        .padd-bottom-bot {
+          padding: 0px 0px 20px 0px !important;
+        }
+        .mobile-font-head,
+        *[class="mobile-font-head"] {
+          font-size: 27px !important;
+          line-height: 37px !important;
+        }
+        .star-padd,
+        *[class="star-padd"] {
+          padding-top: 0px !important;
+        }
+        /* ALLOWS FOR FLUID TABLES */
+        .wrapper {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+        /* ADJUSTS LAYOUT OF LOGO IMAGE */
+        .logo img {
+          margin: 0 auto !important;
+        }
+        /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
+        .mobile-hide {
+          display: none !important;
+        }
+        .img-max {
+          max-width: 100% !important;
+          width: 100% !important;
+          height: auto !important;
+        }
+        /* FULL-WIDTH TABLES */
+        .responsive-table {
+          width: 100% !important;
+        }
+        /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
+        .padding {
+          padding: 10px 15px 10px 15px !important;
+        }
+        .padding-meta {
+          padding: 30px 5% 0px 5% !important;
+          text-align: center;
+        }
+        .section-nobottom-padding {
+          padding: 20px 20px 0px 20px !important;
+        }
+        .padd-tittle {
+          padding: 30px 20px 5px 20px !important;
+          text-align: center;
+        }
+        .padding-copy {
+          padding: 10px 5% 10px 5% !important;
+          text-align: center;
+        }
+        .no-padding {
+          padding: 0 !important;
+        }
+        .mpt1 {
+          padding-top: 1px !important;
+        }
+        .section-notop-padding {
+          padding: 0px 15px 30px 15px !important;
+        }
+        section-nofootor-padding {
+          padding: 0px 15px 30px 15px !important;
+        }
+        .section-padding {
+          padding: 35px 15px 20px 15px !important;
+        }
+        .section-padding-note {
+          padding: 20px 15px 20px 30px !important;
+        }
+        .padd {
+          padding: 0px 15px 10px 15px !important;
+        }
+        .section-padding-main {
+          padding: 30px 15px 30px 15px !important;
+        }
+        .footer-title {
+          padding-bottom: 10px !important;
+        }
+        .mobile-padd {
+          padding-top: 18px !important;
+        }
+        .faculty-padding {
+          padding: 0px 15px 10px 15px !important;
+        }
+        /* ADJUST BUTTONS ON MOBILE */
+        .mobile-button-container {
+          margin: 0 auto;
+          width: 100% !important;
+        }
+        .section-nofootor-padding {
+          padding: 0px 15px 30px 15px !important;
+        }
+        .mobile-button {
+          padding: 15px !important;
+          border: 0 !important;
+          font-size: 18px !important;
+          display: block !important;
+        }
+        .mob-btn-padd-top-10 {
+          padding-top: 10px !important;
+        }
+        .padd-top_0 {
+          padding: 0 0 25px 0 !important;
+          text-align: center;
+        }
+        .brdtopbottom,
+        *[class="brdtopbottom"] {
+          border-left: 0px !important;
+          border-right: 0px !important;
+          border-top: 1px solid #999999;
+          padding-top: 20px !important;
+          padding-bottom: 10px !important;
+        }
+        .border_none {
+          border: 0 !important;
+        }
+        td.mobile-font {
+          padding: 0 15px !important;
+        }
+        .sign-padd,
+        *[class="sign-padd"] {
+          padding: 0 15px 15px 15px !important;
+        }
+        td.flex.border-top {
+          border-top: 1px solid #d2d2d2;
+          padding-top: 30px !important;
+        }
+        .border-topp {
+          border-top: 1px solid #d2d2d2 !important;
+          padding-top: 20px !important;
+          margin-top: 10px !important;
+        }
+        td.flex2.no-padding.border-topp.padd-botm {
+          padding-bottom: 20px !important;
+        }
+        .border-left-none {
+          border-left: none !important;
+          text-align: center !important;
+        }
+        .border-left-none a {
+          text-align: center !important;
+        }
+      }
+      /* ANDROID CENTER FIX */
+      div[style*="margin: 16px 0;"] {
+        margin: 0 !important;
+      }
+      @media screen and (min-width: 526px) {
+        .highlight-box,
+        *[class="highlight-box"] {
+          border-bottom: 1px solid #cacaca;
+          border-right: 1px solid #cacaca;
+        }
+        .highlight-box2,
+        *[class="highlight-box2"] {
+          border-bottom: 1px solid #cacaca;
+        }
+        .highlight-box3,
+        *[class="highlight-box3"] {
+          border-right: 1px solid #cacaca;
+        }
+        .highlight-box4,
+        *[class="highlight-box4"],
+        .highlight-box3,
+        *[class="highlight-box2"] {
+          padding-top: 20px;
+        }
+      }
+    </style>
+    <!--[if gte mso 9]>
+      <style type="text/css" media="all">
+        .msonopad {
+          padding-right: 10px;
+          text-align: center;
+          width: 40px;
+        }
+        img.mso-img {
+          padding-top: 10px;
+          line-height: 24px;
+        }
+      </style>
+    <![endif]-->
+  </head>
+  <body style="margin: 0 !important; padding: 0 !important">
+    <!--[if (gte mso 9)|(ie)]>
+      <center>
+      <table align="center" border="0" cellspacing="0" cellpadding="0"  width="600">
+         <tr>
+            <td align="center" valign="top" width="600">
+               <![endif]-->
+    <!-- HIDDEN PREHEADER TEXT -->
+    <div
+      style="
+        mso-hide: all;
+        display: none;
+        font-size: 1px;
+        color: #333333;
+        line-height: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+      "
+    ></div>
+    <table align="center">
+      <tbody>
+        <tr>
+          <td align="center" class="container" style="border: 1px solid #dddddd" width="600">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <td align="center" bgcolor="#ffffff" style="padding: 0px">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="wrapper" width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" class="" valign="">
+                            <img alt="" src="{!$Label.Static_Resouce_Path_PDF}/IPAG_XLRI_DBA_1.png" style="max-width: 100%; display: block" title="" />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align="center" bgcolor="#ffffff" style="padding: 0px">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="wrapper" width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" class="" valign="">
+                            <img
+                              alt=""
+                              src="{!$Label.Static_Resouce_Path_PDF}/IPAG_XLRI_MBA_2.png"
+                              style="max-width: 100%; display: block"
+                              title=""
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align="left" bgcolor="#ffffff" class="" style="padding: 20px 20px 10px 20px">
+                    <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                              text-align: left;
+                            "
+                          >
+                            <b>Dear Student,</b><br /><br />
+
+                            <b>Congratulations on Your MBA Admission Offer</b><br /><br />
+
+                            We are delighted to inform you that you have been selected for admission to the <b>Master of Business Administration (MBA) Programme</b>, offered by <b>IPAG Business School with certification from XLRI</b>. The programme is scheduled to commence on <b>February 25, 2026</b>.<br /><br />
+
+                            We are pleased to extend this offer and look forward to welcoming you as a participant in this prestigious global learning experience.<br /><br />
+
+                            Please note that your admission is <b>provisional</b>, subject to payment of the programme fee as per the instalment schedule available on your Dashboard.<br /><br />
+
+                            <b>Next Steps to Confirm Your Seat</b><br /><br />
+
+                            To secure your seat in the programme, please ensure the following payments are made within the specified timelines:
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align="center" bgcolor="#ffffff" style="padding: 0px 20px 10px 20px">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="wrapper" width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" class="" valign="">
+                            <img
+                              alt=""
+                              src="{!$Label.Static_Resouce_Path_PDF}/IPAG_XLRI_MBA_1.jpg"
+                              style="max-width: 100%; display: block"
+                              title=""
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align="left" bgcolor="#ffffff" class="" style="padding: 0px 20px 20px 20px">
+                    <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="left" class="mobile-font" style="
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 28px;
+                              text-align: left;">
+                            <strong>Login to your Dashboard:</strong>
+                            <a href="https://admissions.emeritus.org/enrollments" style="text-decoration: underline; color: #e94570" target="_blank">Click here</a><br><br>
+                            You should have also received an automated email with a direct link to the payment page. If not, you can still access your dashboard using the link above.</br></br>
+                            Please note that seats in this programme are <b>limited</b> and offered on a <b>first-come, first-served</b> basis.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td bgcolor="#ffffff" class="" valign="top" width="100%" style="padding: 0 20px 20px 20px">
+                    <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              padding: 0;
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                            "
+                          >
+                            <b
+                              style="
+                                font-size: 20px;
+                                font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                                color: #61c3d9;
+                                line-height: 30px;
+                              "
+                              >Terms and Conditions</b
+                            ><br /><br />
+                            <b>General Requirements</b><br />
+
+                            <ul>
+                              <li>
+                                Participants must maintain a minimum of 75% attendance in all live sessions for each course.
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td bgcolor="#ffffff" class="" valign="top" width="100%" style="padding: 0 20px 20px 20px">
+                    <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              padding: 0;
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                            "
+                          >
+                            <b>Graduation Requirements – MBA at IPAG</b><br />
+                            To successfully complete the MBA programme:<br />
+
+                            <ul>
+                              <li>
+                                Participants will be evaluated through a combination of written examinations, assignments, and class participation.
+                              </li>
+                              <li>A minimum attendance of 75% is required.</li>
+                              <li>Participants must secure at least 50% in each course, and 50% overall to pass.</li>
+                              <li>
+                                If a participant scores below 50% in any individual course, they will be required to take a re-examination.
+                              </li>
+                            </ul>
+                            <i
+                              style="
+                                font-size: 14px;
+                                font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                                color: #333333;
+                                line-height: 24px;
+                              "
+                              >Note: There is no re-exam fee.</i
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td bgcolor="#ffffff" class="" valign="top" width="100%" style="padding: 0 20px 20px 20px">
+                    <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              padding: 0;
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                            "
+                          >
+                            <b
+                              style="
+                                font-size: 20px;
+                                font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                                color: #61c3d9;
+                                line-height: 30px;
+                              "
+                              >Refund / Cancellation Policy</b
+                            ><br /><br />
+                            All cancellation or withdrawal requests must be submitted <b>in writing.</b><br /><br />
+                            <b>If the refund request is received 14 days or more before the programme start date:</b>
+                            <ul>
+                              <li>
+                                A full refund of the programme fee paid will be issued (excluding the non-refundable
+                                application fee, if applicable).
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              padding: 0;
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                            "
+                          >
+                            <b>If the refund request is received less than 14 days before the programme start date:</b>
+                            <ul>
+                              <li>A refund will be issued after deducting an INR 5,000 refund-processing fee + GST.</li>
+                            </ul>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              padding: 0;
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                            "
+                          >
+                            <b>After programme commencement:</b>
+                            <ul>
+                              <li>No refund will be processed.</li>
+                            </ul>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              padding: 0;
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                            "
+                          >
+                            <b>If the programme is cancelled by the institution:</b>
+                            <ul>
+                              <li>
+                                A full refund of the entire amount including taxes will be issued with no penalty.
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              padding: 0;
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                            "
+                          >
+                            <b>If the programme start date is rescheduled by over one month:</b>
+                            <ul>
+                              <li>A full refund of the academic fee plus taxes will be issued upon written request.</li>
+                            </ul>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              padding: 0;
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 26px;
+                            "
+                          >
+                            <b>If the delay is less than one month:</b>
+                            <ul>
+                              <li>No refund requests will be accepted on this basis.</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align="left" bgcolor="#ffffff" class="" style="padding: 0px 20px 20px 20px">
+                    <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 28px;
+                              text-align: left;
+                            "
+                          >
+                            By submitting the application and accepting admission, you confirm that you have read, understood, and agree to abide by all programme policies, and consent to communication from IPAG and Emeritus for application and enrolment purposes.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align="left" bgcolor="#ffffff" class="" style="padding: 10px 20px 20px 20px">
+                    <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td
+                            align="left"
+                            class="mobile-font"
+                            style="
+                              font-size: 14px;
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              color: #333333;
+                              line-height: 28px;
+                              text-align: left;
+                              padding-bottom: 0px;
+                            "
+                          >
+                            <strong>Benoît LOREL<br />Director of Programmes</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="left" valign="middle">
+                            <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td align="left">
+                                    <img
+                                      src="{!$Label.Static_Resouce_Path_PDF}/IPAG_XLRI_DBA_4.png"
+                                      width="112"
+                                      height="78"
+                                      style="width: 112px; height: 78px; display: block; border: 0px"
+                                      alt=""
+                                    />
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align="left" bgcolor="#ffffff" class="" style="padding: 1px 20px 20px 20px">
+                    <table border="0" cellpadding="0" cellspacing="0" class="responsive-table" width="100%">
+                      <tbody>
+                        <tr>
+                          <td
+                            style="
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              font-size: 12px;
+                              line-height: 24px;
+                              color: #333333;
+                              padding-top: 20px;
+                              border-top: 2px solid #d8d8d8;
+                            "
+                            align="center"
+                          >
+                            IPAG Paris Beaugrenelle – 10 rue du Théâtre - 75015 - 01 40 79 64 40<br />
+                            IPAG Nice - 4 bd Carabacel - 06000 Nice - 04 93 13 39 00 Etablissement d’enseignement
+                            Supérieur Privé Technique<br />
+                            IPAG Thionville-Luxembourg – 13 Boulevard Jeanne d’Arc – 57100 Thionville
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="
+                              font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+                              font-size: 18px;
+                              line-height: 28px;
+                              color: #61c3d9;
+                              padding-top: 10px;
+                            "
+                            align="center"
+                          >
+                            <b
+                              >Going Beyond Together -
+                              <a
+                                href="WWW.IPAG.EDU"
+                                target="_blank"
+                                style="text-decoration: none; font-size: 18px; line-height: 28px; color: #61c3d9"
+                                >WWW.IPAG.EDU</a
+                              ></b
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--[if (gte mso 9)|(IE)]>
+            </td>
+         </tr>
+      </table>
+      <![endif]-->
+    <custom name="opencounter" type="tracking" />
+  </body>
+</html>
+
+
+</apex:page>
