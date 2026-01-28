@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admission granted</title>
+<style type="text/css"></style>
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" style="padding: 0; max-width:560px; margin:0 auto;" width='560'>
+	<tbody>
+		<tr>
+			<td align="center" style="border:1px solid #a2a2a2;" valign="top"><table align="center" border="0" cellpadding="0" cellspacing="0" style="max-width:560px;">
+					<tbody>
+						<tr>
+							<td style="background:#00502D;background-color: #00502D; " width="100%">
+							<table style="background:#00502D;background-color: #00502D" align="center" width="100%">
+<tbody>
+<tr>
+<td height="20"></td> 
+</tr>
+<tr>
+<td style="padding:0 15px;" class="" align="center"><a href="#"><img src="https://c.ap2.content.force.com/servlet/servlet.ImageServer?id=01528000001BQph&oid=00D280000016uDx" style="width:auto; display:block; border: 0;"></a></td>
+</tr>
+<tr>
+<td height="30"></td>
+</tr>
+</tbody>
+</table>
+</td>
+						</tr>
+						<tr>
+							<td height="14" class="">&nbsp;</td>
+						</tr>
+<tr>
+							<td style="padding:0 14px;text-align:Center; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal; font-weight:bold;" class="">Selection : {!Opportunity.Product_Details__c} - {!Opportunity.Program_Description__c}</td>
+						</tr>
+<tr>
+							<td height="14" class="">&nbsp;</td>
+						</tr>
+
+						<tr>
+							<td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal; font-weight:bold;" class="">Dear {!Opportunity.First_Name__c} {!Opportunity.Last_Name__c},</td>
+						</tr>
+						<tr>
+							<td height="10" class=""></td>
+						</tr>
+						<tr>
+							<td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal;" class="">We are glad to inform you that your application to the {!Opportunity.Program_Description__c} has been <b>Selected</b>. Congratulations!</td>
+						</tr>
+<tr>
+							<td height="10" class=""></td>
+						</tr>
+
+<tr>
+							<td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal;" class="">Programme Fee is  USD {!Opportunity.Programme_Fee__c} + Taxes (if applicable)</td>
+						</tr>
+<tr>
+							<td height="10" class=""></td>
+						</tr>
+						<tr>
+							<td height="10" class=""></td>
+						</tr>
+
+						<tr>
+							<td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal;" class="">To confirm your seat in the programme you must make the following payments <b>before the specified due dates</b> that are available on the <a href={!Opportunity.Dashboard_Link__c}>Dashboard</a>
+						</tr>
+						<tr>
+							<td height="10" class=""></td>
+						</tr>
+						<tr>
+							<td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal;" class=""><li>You <b>must</b> pay the 1st Instalment within 2 days of receiving this email to confirm your seat.</li>
+
+<li>You <b>must</b> pay the 2nd instalment to be granted admission to the program.</li>
+</td>
+						</tr>
+<tr>
+							<td height="10" class=""></td>
+						</tr>
+<tr><td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal;" class="">For future instalment payment schedule and to make payments, please <a href={!Opportunity.Dashboard_Link__c}>click here.</a></td></tr>
+<tr>
+							<td height="30" class=""></td>
+						</tr>
+						<tr>
+							<td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal; " class=""><b>Please note that we have limited seats in the programme, and they will be allotted on a first-come first-serve basis.</b>
+						</tr>
+<tr>
+							<td height="30" class=""></td>
+						</tr>
+<tr>
+							<td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal; " class="">We look forward to welcoming you into this programme.
+						</tr>
+<tr>
+							<td height="20" class=""></td>
+						</tr>
+						<tr>
+							<td style="padding:0 14px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:normal; " class="">Best Regards,<br/>
+Programme Support Team<br/>
+Emeritus
+						</tr>			
+						<tr>
+							<td height="10" class=""></td>
+						</tr>
+						<tr>
+								<td height="15" class=""></td>
+						</tr>
+						<!--<tr>
+							<td style="background-color:#dddddf; width:100%;"><table width="100%">
+									<tbody>
+										<tr>
+											<td height="20"></td>
+										</tr>
+										<tr>
+											<td style="width:20%; padding:0 5px;text-align:left; font-size:14px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:20px; font-style:bold;" class="">Founding<br />
+												Academic<br />
+												Institutions</td>
+											<td style="width:15%;"><img src="https://c.ap2.content.force.com/servlet/servlet.ImageServer?id=01528000001BQo5&amp;oid=00D280000016uDx" style="margin: 0 auto;max-width: 65px;vertical-align: middle;border: 0;" width="65"></td>
+											<td style="width:38%;"><img src="https://c.ap2.content.force.com/servlet/servlet.ImageServer?id=01528000001BQoA&amp;oid=00D280000016uDx" style="margin: 0 auto;max-width: 190px;vertical-align: middle;border: 0;" width="190"></td>
+											<td style="width:27%;"><img src="https://c.ap2.content.force.com/servlet/servlet.ImageServer?id=01528000001BQoo&amp;oid=00D280000016uDx" style="margin: 0 auto;max-width: 140px;vertical-align: middle;border: 0;" width="140"></td>
+										</tr>
+										<tr>
+											<td height="20"></td>
+										</tr>
+									</tbody>
+								</table></td>
+						</tr>-->
+<tr>
+							<td style="padding:0 14px; background-color:#dddddf; width:100%; text-align:center; font-size:10px; color:#393939; font-family:Arial, Helvetica, sans-serif; line-height:18px;" class=""><span style="font-weight:bold;">Erulearning Solutions Private Limited (a company incorporated in India) is a subsidiary of Eruditus Learning Solutions Pte Ltd (a company incorporated in Singapore), and operates under the brand name of 'Eruditus' and 'Emeritus'.
+					</tbody>
+				</table></td>
+		</tr>
+	</tbody>
+</table>
+<!--[if (lte mso 9)|(IE)]>
+     </td>
+    </tr>
+  </table>
+</center>
+<![endif]--><!--[if (gte mso 9)|(IE)]>
+     </td>
+    </tr>
+  </table>
+</center>
+<![endif]-->
+</body>
+</html>
