@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use this template for sending sync selection email notification for PDF</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>IS Notification-Selection Email Sync PDF APAC</name>
+    <style>none</style>
+    <subject>Selection: {!Opportunity.Product_Details__c} - {!Opportunity.Program_Description__c}</subject>
+    <textOnly>Admission granted
+
+Selection : {!Opportunity.Product_Details__c} - {!Opportunity.Program_Description__c}
+Dear {!Opportunity.First_Name__c} {!Opportunity.Last_Name__c},
+We are glad to inform you that your application to the {!Opportunity.Program_Description__c} has been Selected. Congratulations!
+Programme Fee is  USD {!Opportunity.Programme_Fee__c} + GST
+To confirm your seat in the programme you must make the following payments before the specified due dates that are available on the Dashboard
+You must pay the 1st Instalment within 2 days of receiving this email to confirm your seat.
+You must pay the 2nd instalment to be granted admission to the program.
+For future instalment payment schedule and to make payments, please click here.
+Please note that we have limited seats in the programme, and they will be allotted on a first-come first-serve basis.
+We look forward to welcoming you into this programme.
+Best Regards,
+Programme Support Team
+Emeritus
+Erulearning Solutions Private Limited (a company incorporated in India) is a subsidiary of Eruditus Learning Solutions Pte Ltd (a company incorporated in Singapore), and operates under the brand name of &apos;Eruditus&apos; and &apos;Emeritus&apos;.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
